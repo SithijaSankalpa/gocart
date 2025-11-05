@@ -35,7 +35,7 @@ export async function POST(request) {
 }
 
 // Delete coupon /api/coupon?id=couponId
-export async function Delete(request) {
+export async function DELETE(request) {
   try {
     const {userId} = getAuth(request)
     const isAdmin = await authAdmin(userId)
