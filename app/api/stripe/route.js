@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 export async function POST(request) {
   try {
     const body = await request.text()
-    const sig = request.get('Stripe-Signature')
+    const sig = request.headers.get('Stripe-Signature')
 
     const event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET)
 
@@ -25,10 +25,10 @@ export async function POST(request) {
     if(isPaid){
       // Mark orders as paid
       await Promise.all(orderIdsArray.map(async (orderId) =>{
-        prisma.order.update({
-          where: {id: orderId},
-          data: {isPaid: true}
-        })
+                  await prisma.order.update({
+            where: {id: orderId},
+            data: {isPaid: true}
+          })
        })) 
 
        // Delete cart from user
