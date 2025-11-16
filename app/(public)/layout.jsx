@@ -20,7 +20,7 @@ export default function PublicLayout({ children }) {
 
     useEffect(()=>{
        dispatch(fetchProducts({}))
-    }, [])
+    }, [dispatch])
 
     useEffect(()=>{
        if(user){
@@ -28,13 +28,25 @@ export default function PublicLayout({ children }) {
         dispatch(fetchAddress({getToken}))
         dispatch(fetchUserRatings({getToken}))
        }
-    }, [user])
+    }, [user, dispatch, getToken])
 
     useEffect(()=>{
        if(user){
         dispatch(uploadCart({getToken}))
        }
-    }, [cartItems])
+    }, [cartItems, user, dispatch, getToken])
+
+    // Refetch cart when page becomes visible (after returning from Stripe)
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible' && user) {
+                dispatch(fetchCart({getToken}))
+            }
+        }
+        
+        document.addEventListener('visibilitychange', handleVisibilityChange)
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }, [user, dispatch, getToken])
 
     return (
         <>
@@ -44,4 +56,4 @@ export default function PublicLayout({ children }) {
             <Footer />
         </>
     );
-}
+   }
