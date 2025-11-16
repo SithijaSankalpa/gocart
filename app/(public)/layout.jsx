@@ -36,11 +36,14 @@ export default function PublicLayout({ children }) {
        }
     }, [cartItems, user, dispatch, getToken])
 
-    // Refetch cart when page becomes visible (after returning from Stripe)
+    // ADDED: Refetch cart and data when page becomes visible (after returning from Stripe)
     useEffect(() => {
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible' && user) {
+                // Refetch all user data when returning from payment
                 dispatch(fetchCart({getToken}))
+                dispatch(fetchAddress({getToken}))
+                dispatch(fetchUserRatings({getToken}))
             }
         }
         
@@ -56,4 +59,4 @@ export default function PublicLayout({ children }) {
             <Footer />
         </>
     );
-   }
+}

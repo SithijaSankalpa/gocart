@@ -23,12 +23,12 @@ export async function POST(request) {
     const orderIdsArray = orderIds.split(',')
 
     if(isPaid){
-      // Mark orders as paid
+      // Mark orders as paid - FIXED: Added await
       await Promise.all(orderIdsArray.map(async (orderId) =>{
-                  await prisma.order.update({
-            where: {id: orderId},
-            data: {isPaid: true}
-          })
+        await prisma.order.update({
+          where: {id: orderId},
+          data: {isPaid: true}
+        })
        })) 
 
        // Delete cart from user

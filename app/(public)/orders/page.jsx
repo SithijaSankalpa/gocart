@@ -15,21 +15,35 @@ export default function Orders() {
     const {user, isLoaded} = useUser()
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [retryCount, setRetryCount] = useState(0)
     const router = useRouter()
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
                 const token = await getToken()
-                const {data} = await axios.get('/api/orders', { headers: {
-                    Authorization: `Bearer ${token}`
-                }})
+                const {data} = await axios.get('/api/orders', { 
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
                 setOrders(data.orders)
                 setLoading(false)
             } catch (error) {
-                toast.error(error?.response?.data?.error || error.message)
+                console.error('Error fetching orders:', error)
+                
+                // Retry up to 3 times if it fails (webhook might still be processing)
+                if (retryCount < 3) {
+                    setTimeout(() => {
+                        setRetryCount(prev => prev + 1)
+                    }, 2000) // Retry after 2 seconds
+                } else {
+                    toast.error(error?.response?.data?.error || error.message)
+                    setLoading(false)
+                }
             }
         }
+        
         if(isLoaded){
             if(user){
                 fetchOrders()
@@ -37,10 +51,21 @@ export default function Orders() {
                 router.push('/')
             }
         }
-    }, [isLoaded, user, getToken, router]);
+    }, [isLoaded, user, getToken, router, retryCount]);
 
     if(!isLoaded || loading){
-        return <Loading />
+        return (
+            <div className="min-h-[70vh] flex items-center justify-center">
+                <div className="text-center">
+                    <Loading />
+                    {retryCount > 0 && (
+                        <p className="mt-4 text-slate-500">
+                            Loading your orders... (Attempt {retryCount + 1}/4)
+                        </p>
+                    )}
+                </div>
+            </div>
+        )
     }
 
     return (
