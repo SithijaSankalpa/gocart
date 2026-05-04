@@ -1,4 +1,4 @@
-<img width="1670" height="993" alt="prodductdetails" src="https://github.com/user-attachments/assets/0700ce25-66de-4cd0-b595-8566a9ca52e9" />## Features
+## Features
 
 GoCart is a full-stack, multi-vendor e-commerce platform that combines a customer-facing storefront with seller and admin dashboards, offering payments, reviews, coupons, and AI-assisted product listing in one codebase.
 
@@ -11,24 +11,6 @@ GoCart is a full-stack, multi-vendor e-commerce platform that combines a custome
 - **AI product helper:** Generate product name + description from image.
 - **Media hosting:** Image uploads served via ImageKit.
 - **Background jobs:** Inngest syncs Clerk users and expires coupons.
-
-## 🖼️ Screenshots
-
-<img width="1701" height="840" alt="dashboard" src="https://github.com/user-attachments/assets/309c80bd-346b-4723-9cc7-1b3cbe8fea7a" />
-
-<img width="1861" height="867" alt="admindashboard" src="https://github.com/user-attachments/assets/8dde498a-5a1e-40c0-b86e-005aaf30d1bb" />
-
-<img width="1670" height="993" alt="prodductdetails" src="https://github.com/user-attachments/assets/16a7307f-ca10-498e-82d8-60213ec49680" />
-
-<img width="1651" height="772" alt="cart" src="https://github.com/user-attachments/assets/fcf6a85c-ed2a-434c-916b-56e3e17690e1" />
-
-<img width="1248" height="1031" alt="Stripe" src="https://github.com/user-attachments/assets/7849c7fc-2f82-4c22-a1f6-a783b1bfbe22" />
-
-
-<img width="1657" height="1088" alt="products" src="https://github.com/user-attachments/assets/0c79dadb-d661-46ff-ba8d-f9f85bb9182d" />
-
-
-![Stripe Checkout](assets/stripe.jpg)
 
 ## 🛠️ Tech Stack <a name="-tech-stack"></a>
 
@@ -44,6 +26,16 @@ GoCart is a full-stack, multi-vendor e-commerce platform that combines a custome
 - **AI:** OpenAI (image-to-text product helper)
 - **Charts:** Recharts
 - **Utilities:** Axios, date-fns, react-hot-toast, lucide-react, ws
+
+## 🖼️ Screenshots
+
+<img width="1701" height="840" alt="dashboard" src="https://github.com/user-attachments/assets/309c80bd-346b-4723-9cc7-1b3cbe8fea7a" />
+<img width="1861" height="867" alt="admindashboard" src="https://github.com/user-attachments/assets/8dde498a-5a1e-40c0-b86e-005aaf30d1bb" />
+<img width="1670" height="993" alt="prodductdetails" src="https://github.com/user-attachments/assets/16a7307f-ca10-498e-82d8-60213ec49680" />
+<img width="1651" height="772" alt="cart" src="https://github.com/user-attachments/assets/fcf6a85c-ed2a-434c-916b-56e3e17690e1" />
+<img width="1248" height="1031" alt="Stripe" src="https://github.com/user-attachments/assets/7849c7fc-2f82-4c22-a1f6-a783b1bfbe22" />
+<img width="1670" height="993" alt="prodductdetails" src="https://github.com/user-attachments/assets/0700ce25-66de-4cd0-b595-8566a9ca52e9" />
+<img width="1657" height="1088" alt="products" src="https://github.com/user-attachments/assets/0c79dadb-d661-46ff-ba8d-f9f85bb9182d" />
 
 ## 🧱 Architecture Highlights
 
